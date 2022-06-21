@@ -1,0 +1,104 @@
+package com.monocept.test;
+
+import java.util.*;
+
+public class CricketBookGame {
+
+	public static void main(String[] args) {
+		System.out.println(
+				"Rules for the Game...\n1.Assume a book of 300 pages Player 1 opens the book to read a page number (Randomly generated) "
+						+ "\n2.Total score of a player = page number % 7 (number % 7 will always be between 0 - 6)"
+						+ "\n3.Player 1 continues and keeps adding to the score until page number results in a 0 score"
+						+ "\n4.Player 2 starts the game and tries to beat the score of player 1"
+						+ "\n5.In case of a tie, check the number of turns(player with lesser turns is winner) "
+						+ "\n6.Show the winner of the game.");
+
+		String player1 = "";
+		String player2 = "";
+		int player1TotalScore = 0;
+		int player2TotalScore = 0;
+		int roundsPlayer1 = 0;
+		int roundsPlayer2 = 0;
+		int pointPlayer1 = 0;
+		int pointPlayer2 = 0;
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Enter 1 to start the game and 0 to exit:");
+		int temp = sc.nextInt();
+
+		if (temp == 1) {
+
+			System.out.print("Enter player 1 name: ");
+			player1 = sc.next();
+			System.out.print("Enter player 2 name: ");
+			player2 = sc.next();
+			// for player 1
+			System.out.println("Player: " + player1);
+			do {
+				System.out.print("Enter 1 to open the book: ");
+				int temp1 = sc.nextInt();
+				Random random = new Random();
+				int pageNo = random.nextInt(301);
+
+				pointPlayer1 = pageNo % 7;
+				if (pointPlayer1 == 0) {
+					System.out.println();
+					System.err.print("!!!           OOPS                !!!");
+				}
+				player1TotalScore += pointPlayer1;
+
+				System.out.print("Page Number " + pageNo);
+				System.out.print("           Point : " + pointPlayer1);
+				System.out.print("   Score " + player1TotalScore);
+				roundsPlayer1++;
+				System.out.println();
+			} while (pointPlayer1 != 0);
+			System.out.println(player1 + " Total Score: " + player1TotalScore);
+			System.out.println(player1 + " Takes " + roundsPlayer1 + " Rounds");
+
+			System.out
+					.println(player2 + " needs " + player1TotalScore + " in " + roundsPlayer1 + " rounds to WIN MATCH");
+//		player 2
+
+			System.out.println("Player :" + player2);
+
+			do {
+				System.out.print("Enter 1 to open the book: ");
+				int temp1 = sc.nextInt();
+				Random random = new Random();
+				int pageNo = random.nextInt(301);
+
+				pointPlayer2 = pageNo % 7;
+				player2TotalScore += pointPlayer2;
+
+				System.out.print("Page Number " + pageNo);
+				System.out.print("       Point : " + pointPlayer2);
+				System.out.print("       Score " + player2TotalScore);
+
+				roundsPlayer2++;
+				System.out.print("       Round left:" + (roundsPlayer1 - roundsPlayer2));
+				System.out.println();
+			} while (player2TotalScore < player1TotalScore && roundsPlayer2 < roundsPlayer1);
+	}else {
+		System.out.println("You have exited the game");
+	}
+		if (player1TotalScore == player2TotalScore) {
+			if (roundsPlayer2 > roundsPlayer1) {
+				System.out.println(player1 + " WON!!!");
+			} else {
+				System.out.println(player2 + " WON!!!");
+			}
+		} else {
+			if (player2TotalScore < player1TotalScore) {
+				System.out.println(player1 + " WON!!!");
+			} else {
+				System.out.println(player2 + " WON!!!");
+			}
+			
+		}
+		
+		
+		
+	}
+}
