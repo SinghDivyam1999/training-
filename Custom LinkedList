@@ -1,0 +1,33 @@
+package com.model.java;
+
+public class CustomeLinkedList {
+	public static class Node // class for creating node
+	{
+		int data; // data of the node
+		Node next; // stores address of the next node
+
+	}
+
+	public static void main(String args[]) {
+		Node newnode1 = new Node(); // objects of class Node
+		Node newnode2 = new Node();
+		Node newnode3 = new Node();
+		Node newnode4 = new Node();
+		newnode1.data = 10;
+		newnode2.data = 20;
+		newnode3.data = 30;
+		newnode4.data = 40;
+
+		newnode1.next = newnode2; // linking the previous node to the next node
+		newnode2.next = newnode3;
+		newnode3.next = newnode4;
+		newnode4.next = null;
+
+		// printing the created linked list
+
+		for (int i = 1; i <= 4; i++) {
+			System.out.print(newnode1.data + " ");
+			newnode1 = newnode1.next; // we are assigning the next address of the linked list to the current address
+		}
+	}
+}
